@@ -1,0 +1,11 @@
+Console_Chat: main.cpp lib
+	g++ -o Console_Chat main.cpp -L. -lMyLibrary
+
+lib: User.h Chat.h sha1.h User.cpp Chat.cpp sha1.cpp
+	g++ -o ChatLib.o Chat.cpp -c
+	g++ -o sha1Lib.o sha1.cpp -c
+	g++ -o UserLib.o User.cpp -c
+	ar rc libMyLibrary.a ChatLib.o sha1Lib.o UserLib.o
+
+clean:
+	rm -rf *.o *.a
